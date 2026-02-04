@@ -31,8 +31,11 @@ namespace TeamsDialer
             // Remove tel: prefix (both normal and URL-encoded)
             string number = url.Replace("tel:", "").Replace("tel%3A", "");
             
-            // Clean formatting characters
-            number = Regex.Replace(number, @"[\s\-\(\)]", "");
+            // Decode URL encoding (e.g., %20 for spaces)
+            number = Uri.UnescapeDataString(number);
+            
+            // Clean formatting characters (spaces, dashes, parentheses, dots) and trim
+            number = Regex.Replace(number, @"[\s\-\(\)\.]", "").Trim();
             
             // Get user's default country prefix from registry
             string defaultPrefix = GetDefaultPrefix();
