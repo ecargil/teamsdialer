@@ -2,9 +2,19 @@
 
 A lightweight Windows application that registers as a `tel:` protocol handler to make phone calls directly through Microsoft Teams.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
-![License](https://img.shields.io/badge/license-MIT-green)
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
+![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=for-the-badge&logo=windows)
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![.NET](https://img.shields.io/badge/.NET%20Framework-2.0+-512BD4?style=for-the-badge&logo=.net)
+![Teams](https://img.shields.io/badge/Microsoft-Teams-6264A7?style=for-the-badge&logo=microsoftteams)
+
+[![Download](https://img.shields.io/badge/Download-Installer-success?style=for-the-badge&logo=download)](https://github.com/ecargil/teamsdialer/raw/main/TeamsDialerSetup.exe)
+[![GitHub Stars](https://img.shields.io/github/stars/ecargil/teamsdialer?style=for-the-badge&logo=github)](https://github.com/ecargil/teamsdialer/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/ecargil/teamsdialer?style=for-the-badge&logo=github)](https://github.com/ecargil/teamsdialer/issues)
+
+</div>
 
 ## 🚀 Features
 
