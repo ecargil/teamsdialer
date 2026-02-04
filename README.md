@@ -4,6 +4,8 @@ A lightweight Windows application that registers as a `tel:` protocol handler to
 
 <div align="center">
 
+<img src="phone.ico" alt="TeamsDialer Icon" width="128" height="128">
+
 ![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=for-the-badge&logo=windows)
 ![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-green?style=for-the-badge)
