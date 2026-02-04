@@ -6,7 +6,7 @@ A lightweight Windows application that registers as a `tel:` protocol handler to
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=for-the-badge&logo=windows)
-![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-green?style=for-the-badge)
 ![.NET](https://img.shields.io/badge/.NET%20Framework-2.0+-512BD4?style=for-the-badge&logo=.net)
 ![Teams](https://img.shields.io/badge/Microsoft-Teams-6264A7?style=for-the-badge&logo=microsoftteams)
 
@@ -177,7 +177,9 @@ csc.exe /target:winexe /win32icon:phone.ico /r:System.Windows.Forms.dll /r:Syste
 
 ## 📝 License
 
-MIT License - See [LICENSE](LICENSE) file for details
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License - see the [LICENSE](LICENSE) file for details.
+
+**Summary**: You can use, modify, and share this software for non-commercial purposes with attribution.
 
 ## 👤 Author
 
