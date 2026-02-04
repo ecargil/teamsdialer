@@ -1,7 +1,10 @@
 # Build outputs
-*.exe
+TeamsDialer.exe
 *.dll
 *.pdb
+
+# Keep installer for GitHub releases
+!TeamsDialerSetup.exe
 
 # Visual Studio
 .vs/

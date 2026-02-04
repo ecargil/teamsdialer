@@ -2,7 +2,7 @@
 AppName=TeamsDialer
 AppVersion=1.0.0
 AppPublisher=ecargil
-AppPublisherURL=https://github.com/ecargil/TeamsDialer
+AppPublisherURL=https://github.com/ecargil/teamsdialer
 DefaultDirName={autopf}\TeamsDialer
 DefaultGroupName=TeamsDialer
 OutputDir=.

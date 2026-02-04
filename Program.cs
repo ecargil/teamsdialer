@@ -8,11 +8,16 @@ using Microsoft.Win32;
 
 namespace TeamsDialer
 {
+    /// <summary>
+    /// TeamsDialer - A tel: protocol handler for Microsoft Teams
+    /// Registers itself to handle tel: URLs and initiates calls through Teams
+    /// </summary>
     class Program
     {
         [STAThread]
         static void Main(string[] args)
         {
+            // No arguments: Show settings dialog and register protocol
             if (args.Length == 0)
             {
                 RegisterProtocol();
@@ -20,60 +25,70 @@ namespace TeamsDialer
                 return;
             }
 
+            // Process tel: URL from command line
             string url = args[0];
             
-            // Remove tel: prefix
+            // Remove tel: prefix (both normal and URL-encoded)
             string number = url.Replace("tel:", "").Replace("tel%3A", "");
             
-            // Remove spaces, dashes, parentheses
+            // Clean formatting characters
             number = Regex.Replace(number, @"[\s\-\(\)]", "");
             
-            // Get default prefix from registry
+            // Get user's default country prefix from registry
             string defaultPrefix = GetDefaultPrefix();
             
-            // Add default prefix if no country code
+            // Add default prefix for local numbers
             if (!number.StartsWith("+") && !number.StartsWith("00"))
             {
                 number = defaultPrefix + number;
             }
             
-            // Replace 00 with +
+            // Convert international prefix 00 to +
             if (number.StartsWith("00"))
             {
                 number = "+" + number.Substring(2);
             }
             
-            // Launch Teams
+            // Launch Microsoft Teams with the formatted number
             string teamsUrl = "https://teams.microsoft.com/l/call/0/0?users=4%3A" + Uri.EscapeDataString(number);
             ProcessStartInfo psi = new ProcessStartInfo(teamsUrl);
             psi.UseShellExecute = true;
             Process.Start(psi);
         }
         
+        /// <summary>
+        /// Registers TeamsDialer as a tel: protocol handler in Windows Registry
+        /// Uses HKEY_CURRENT_USER to avoid requiring administrator privileges
+        /// </summary>
         static void RegisterProtocol()
         {
             try
             {
                 string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 
+                // Register tel: protocol
                 RegistryKey key = Registry.CurrentUser.CreateSubKey("Software\\Classes\\tel");
                 key.SetValue("", "URL:tel Protocol");
                 key.SetValue("URL Protocol", "");
                 key.Close();
                 
+                // Set command to execute when tel: link is clicked
                 key = Registry.CurrentUser.CreateSubKey("Software\\Classes\\tel\\shell\\open\\command");
                 key.SetValue("", "\"" + exePath + "\" \"%1\"");
                 key.Close();
                 
+                // Register application capabilities
                 key = Registry.CurrentUser.CreateSubKey("Software\\TeamsDialer\\Capabilities");
                 key.SetValue("ApplicationName", "Teams Dialer");
                 key.SetValue("ApplicationDescription", "Dial phone numbers with Microsoft Teams");
                 key.Close();
                 
+                // Associate tel: protocol with this application
                 key = Registry.CurrentUser.CreateSubKey("Software\\TeamsDialer\\Capabilities\\URLAssociations");
                 key.SetValue("tel", "tel");
                 key.Close();
                 
+                // Clear existing user choice to allow re-selection
                 try
                 {
                     Registry.CurrentUser.DeleteSubKeyTree("Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\tel\\UserChoice");
@@ -83,6 +98,10 @@ namespace TeamsDialer
             catch { }
         }
         
+        /// <summary>
+        /// Retrieves the default country prefix from registry
+        /// Returns +34 (Spain) as default if not configured
+        /// </summary>
         static string GetDefaultPrefix()
         {
             try
@@ -97,9 +116,12 @@ namespace TeamsDialer
                 }
             }
             catch { }
-            return "+34";
+            return "+34"; // Default to Spain
         }
         
+        /// <summary>
+        /// Displays the configuration dialog for setting default country prefix
+        /// </summary>
         static void ShowConfigDialog()
         {
             Form form = new Form();
@@ -158,6 +180,9 @@ namespace TeamsDialer
             Application.Run(form);
         }
         
+        /// <summary>
+        /// Opens GitHub profile in default browser
+        /// </summary>
         static void LinkGithub_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -169,6 +194,9 @@ namespace TeamsDialer
             catch { }
         }
         
+        /// <summary>
+        /// Saves the default country prefix to registry
+        /// </summary>
         static void BtnSave_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;

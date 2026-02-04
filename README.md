@@ -25,23 +25,25 @@ A lightweight Windows application that registers as a `tel:` protocol handler to
 
 ## 🔧 Installation
 
-### Option 1: Using the Installer (Recommended)
+### Quick Install (Recommended)
 
-1. Download `TeamsDialerSetup.exe` from the [Releases](https://github.com/ecargil/TeamsDialer/releases) page
+1. Download `TeamsDialerSetup.exe` from this repository or the [Releases](https://github.com/ecargil/teamsdialer/releases) page
 2. Run the installer as Administrator
 3. Follow the installation wizard
 4. Launch TeamsDialer from the Start Menu or let it launch automatically
-5. Configure your default country prefix
-6. Done!
+5. Configure your default country prefix (e.g., `+34`, `+1`, `+44`)
+6. Done! Click any `tel:` link to test
 
-### Option 2: Portable Version
+### Alternative: Portable Version
 
-1. Download `TeamsDialer.exe` from the [Releases](https://github.com/ecargil/TeamsDialer/releases) page
+If you prefer not to use the installer:
+
+1. Download `TeamsDialer.exe` from the [Releases](https://github.com/ecargil/teamsdialer/releases) page
 2. Run `TeamsDialer.exe`
 3. The application will automatically register itself as the `tel:` protocol handler
-4. Configure your default country prefix (e.g., `+34`, `+1`, `+44`)
+4. Configure your default country prefix
 5. Click **Save**
-6. Done! Click any `tel:` link to test
+6. Done!
 
 **Note**: When you first click a `tel:` link, Windows may ask you to choose an application. Select TeamsDialer and check "Always use this app".
 
@@ -79,12 +81,13 @@ TeamsDialer/
 ├── Build.ps1                  # Build script
 ├── BuildInnoSetup.ps1         # Build installer with Inno Setup
 ├── TeamsDialer.iss            # Inno Setup installer script
-├── Install-SystemWide.ps1     # Optional system-wide installer
+├── TeamsDialerSetup.exe       # Ready-to-use installer
 ├── Uninstall.bat              # Uninstaller for portable version
 ├── phone.ico                  # Application icon
 ├── README.md                  # This file
 ├── LICENSE                    # MIT License
 ├── CONTRIBUTING.md            # Contribution guidelines
+├── GITHUB_SETUP.md            # GitHub setup instructions
 └── .gitignore                 # Git ignore rules
 ```
 
@@ -99,7 +102,7 @@ TeamsDialer/
 
 ```powershell
 # Clone the repository
-git clone https://github.com/ecargil/TeamsDialer.git
+git clone https://github.com/ecargil/teamsdialer.git
 cd TeamsDialer
 
 # Build the application
@@ -115,15 +118,7 @@ Or compile manually:
 csc.exe /target:winexe /win32icon:phone.ico /r:System.Windows.Forms.dll /r:System.Drawing.dll /out:TeamsDialer.exe Program.cs AssemblyInfo.cs
 ```
 
-### Optional: System-Wide Installation
-
-If you want to install TeamsDialer system-wide for all users (requires Administrator):
-
-```powershell
-.\Install-SystemWide.ps1
-```
-
-Note: This is optional. TeamsDialer.exe is self-installing for the current user.
+**Note**: The installer `TeamsDialerSetup.exe` is included in the repository for convenience. You can use it directly without building.
 
 ## ⚙️ How It Works
 
